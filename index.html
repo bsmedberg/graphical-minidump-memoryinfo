@@ -1,0 +1,59 @@
+<head>
+  <title>Graphical Representation of Minidump Memory Info</title>
+
+  <style type="text/css">
+  body {
+    font-family: san-serif;
+  }
+  ul.nobullet {
+    list-style-type: none;
+  }
+  #commitLegend {
+    border-left: 1em solid #221d6b;
+  }
+  #reserveLegend {
+    border-left: 1em solid #cca633;
+  }
+  #c {
+    position: relative;
+  }
+  #overlay {
+    border: 1px solid black;
+    background-color: #CCC;
+    padding: 2px;
+    display: block;
+    position: absolute;
+    opacity: 0.9;
+    display: none;
+  }
+  </style>
+
+<body>
+  <h1>Graphical Representation of Minidump Memory Info</h1>
+
+  <ul class="nobullet">
+    <li id="commitLegend">Committed Page
+    <li id="reserveLegend">Reserved Page
+  </ul>
+
+  <p><a id="rawlink" href="bug857030-863bb262-a6dd-43fe-ae32-ef9a82130404.memorylist">View the raw data</a></p>
+
+  <div>
+  <canvas id="c"></canvas>
+  </div>
+
+  <div id="overlay">
+    Address: <span id="infoaddress"></span><br>
+    Size: <span id="infosize"></span><br>
+    State: <span id="infostate"></span><br>
+    Protection: <span id="infoprotection"></span><br>
+    Type: <span id="infotype"></span>
+  </div>
+
+  <script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+  <script type="text/javascript" src="jquery.csv-0.71.js"></script>
+  <script type="text/javascript" src="biginteger.js"></script>
+  <script type="text/javascript" src="memoryinfo.js"></script>
+  <script type="text/javascript">
+    graph("bug857030-863bb262-a6dd-43fe-ae32-ef9a82130404.memorylist");
+  </script>
