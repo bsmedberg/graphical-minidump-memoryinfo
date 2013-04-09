@@ -62,9 +62,13 @@ var gReserveColor = '#cca633';
 
 var gRowCount = Math.ceil(gNumPages / gPagesPerRow);
 
+var gLargest = BigInteger(0);
+
 function verifySequential()
 {
   var end = BigInteger(0);
+  var lastAvailable = BigInteger(0);
+
   for (var i = 0; i < gData.length; ++i) {
     var cur = gData[i];
     if (!cur.BaseAddress.remainder(gPageSize).isZero()) {
@@ -77,10 +81,17 @@ function verifySequential()
       throw new Error("Non-sequential allocation at address " + cur.BaseAddress.toString(16));
     }
     end = cur.BaseAddress.add(cur.RegionSize);
+    if (cur.State == 0x10000) { // MEM_FREE
+      gLargest = end.subtract(lastAvailable);
+    }
+    else {
+      lastAvailable = end;
+    }
   }
   if (end.compare(BigInteger('0xFFFFFFFF')) > 0) {
     throw new Error("Address end beyond 32-bit address space: " + end.toString(16));
   }
+  $('#largestrange').text("0x" + gLargest.toString(16));
 }
 
 function setup()

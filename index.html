@@ -16,6 +16,7 @@
   }
   #c {
     position: relative;
+    cursor: crosshair;
   }
   #overlay {
     border: 1px solid black;
@@ -36,7 +37,11 @@
     <li id="reserveLegend">Reserved Page
   </ul>
 
-  <p><a id="rawlink" href="bug857030-863bb262-a6dd-43fe-ae32-ef9a82130404.memorylist">View the raw data</a></p>
+  <p><a id="rawlink" href="bug857030-863bb262-a6dd-43fe-ae32-ef9a82130404.memorylist">View the raw data (excel-csv)</a>
+
+  <p><a href="https://crash-stats.mozilla.com/report/index/863bb262-a6dd-43fe-ae32-ef9a82130404">View at crash-stats.mozilla.com</a>
+
+  <p>Largest continguous memory range: <span id="largestrange"></span>
 
   <div>
   <canvas id="c"></canvas>
